@@ -11,7 +11,7 @@ import www/thirdb073
 pub fn handle_request(req: Request) -> Response {
   case wisp.path_segments(req) {
     [] -> home_page(req)
-    ["third?b073"] -> third_b073(req)
+    ["third-b073"] -> third_b073(req)
 
     ["comments"] -> comments(req)
 
