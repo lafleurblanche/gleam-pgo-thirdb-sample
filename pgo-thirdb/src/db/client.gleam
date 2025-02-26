@@ -58,3 +58,15 @@ pub fn get_all_thirdb074(db) {
   |> list.map(schema.from_tuple_thirdb074)
   |> Ok
 }
+
+pub fn get_all_thirdb075(db) {
+  let sql = "select id, from_sta_code, sta_code, sta_name from thirdb_thb075"
+
+  let return_type =
+    dynamic.tuple4(dynamic.int, dynamic.string, dynamic.string, dynamic.string)
+
+  use resp <- result.try(pgo.execute(sql, db, [], return_type))
+  resp.rows
+  |> list.map(schema.from_tuple_thirdb075)
+  |> Ok
+}
