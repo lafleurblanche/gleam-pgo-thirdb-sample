@@ -1,26 +1,41 @@
 import db/schema
+import dotenv_gleam
+import envoy
 import gleam/dynamic
+import gleam/io
 import gleam/list
 import gleam/option.{Some}
 import gleam/pgo
 import gleam/result
 
-pub fn connect(
-  host host: String,
-  port port: Int,
-  user user: String,
-  password password: String,
-  database database: String,
-) {
+pub fn connect() -> pgo.Connection {
+  // .env ファイルのロード
+  dotenv_gleam.config_with(".env")
+
+  // 環境変数の取得
+  let assert Ok(host) = envoy.get("DBHOST")
+  let assert Ok(user) = envoy.get("DBUSER")
+  let assert Ok(password) = envoy.get("DBPASSWD")
+  let assert Ok(database) = envoy.get("DBNAME")
+
+  // デバッグ用（確認のため）
+  io.debug(host)
+  io.debug(user)
+  io.debug(password)
+  io.debug(database)
+
+  // コネクション作成
   pgo.connect(
     pgo.Config(
       ..pgo.default_config(),
-      port: port,
       user: user,
       password: Some(password),
       host: host,
       database: database,
       pool_size: 15,
+      port: 64_350,
+      ssl: False,
+      // コネクションプールを設定
     ),
   )
 }
