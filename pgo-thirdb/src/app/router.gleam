@@ -1,8 +1,5 @@
 import db/client
-import dotenv_gleam
-import envoy
 import gleam/http.{Get, Post}
-import gleam/io
 import gleam/string_builder
 import wisp.{type Request, type Response}
 import www/index
@@ -25,24 +22,9 @@ pub fn handle_request(req: Request) -> Response {
 
 fn home_page(req: Request) -> Response {
   use <- wisp.require_method(req, Get)
-  dotenv_gleam.config_with(".env")
 
-  let assert Ok(host) = envoy.get("DBHOST")
-  let assert Ok(user) = envoy.get("DBUSER")
-  let assert Ok(password) = envoy.get("DBPASSWD")
-  let assert Ok(database) = envoy.get("DBNAME")
-  io.debug(host)
-  io.debug(user)
-
-  let third_b072 =
-    client.connect(
-      host: host,
-      port: 64_350,
-      user: user,
-      password: password,
-      database: database,
-    )
-    |> client.get_all_thirdb072()
+  let db = client.connect()
+  let third_b072 = client.get_all_thirdb072(db)
 
   case third_b072 {
     Ok(third_b072) -> {
@@ -62,24 +44,9 @@ fn home_page(req: Request) -> Response {
 
 fn third_b073(req: Request) -> Response {
   use <- wisp.require_method(req, Get)
-  dotenv_gleam.config_with(".env")
 
-  let assert Ok(host) = envoy.get("DBHOST")
-  let assert Ok(user) = envoy.get("DBUSER")
-  let assert Ok(password) = envoy.get("DBPASSWD")
-  let assert Ok(database) = envoy.get("DBNAME")
-  io.debug(host)
-  io.debug(user)
-
-  let third_b073 =
-    client.connect(
-      host: host,
-      port: 64_350,
-      user: user,
-      password: password,
-      database: database,
-    )
-    |> client.get_all_thirdb073()
+  let db = client.connect()
+  let third_b073 = client.get_all_thirdb073(db)
 
   case third_b073 {
     Ok(third_b073) -> {
@@ -99,24 +66,9 @@ fn third_b073(req: Request) -> Response {
 
 fn third_b074(req: Request) -> Response {
   use <- wisp.require_method(req, Get)
-  dotenv_gleam.config_with(".env")
 
-  let assert Ok(host) = envoy.get("DBHOST")
-  let assert Ok(user) = envoy.get("DBUSER")
-  let assert Ok(password) = envoy.get("DBPASSWD")
-  let assert Ok(database) = envoy.get("DBNAME")
-  io.debug(host)
-  io.debug(user)
-
-  let third_b074 =
-    client.connect(
-      host: host,
-      port: 64_350,
-      user: user,
-      password: password,
-      database: database,
-    )
-    |> client.get_all_thirdb074()
+  let db = client.connect()
+  let third_b074 = client.get_all_thirdb074(db)
 
   case third_b074 {
     Ok(third_b074) -> {
@@ -136,24 +88,8 @@ fn third_b074(req: Request) -> Response {
 
 fn third_b075(req: Request) -> Response {
   use <- wisp.require_method(req, Get)
-  dotenv_gleam.config_with(".env")
-
-  let assert Ok(host) = envoy.get("DBHOST")
-  let assert Ok(user) = envoy.get("DBUSER")
-  let assert Ok(password) = envoy.get("DBPASSWD")
-  let assert Ok(database) = envoy.get("DBNAME")
-  io.debug(host)
-  io.debug(user)
-
-  let third_b075 =
-    client.connect(
-      host: host,
-      port: 64_350,
-      user: user,
-      password: password,
-      database: database,
-    )
-    |> client.get_all_thirdb075()
+  let db = client.connect()
+  let third_b075 = client.get_all_thirdb075(db)
 
   case third_b075 {
     Ok(third_b075) -> {
